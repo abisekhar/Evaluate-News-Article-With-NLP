@@ -19,16 +19,27 @@ app.use(express.static('dist'));
 console.log(__dirname);
 
 app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'));
-})
+    res.sendFile('dist/index.html')
+    //res.sendFile(path.resolve('src/client/views/index.html'));
+});
+
+app.get('/sentiment', function (req, res) {
+    textapi.sentiment({
+        'url': req.query.url,
+        'mode': 'document'
+    }, function (error, response) {
+        if (error === null) {
+            res.send(response);
+        }
+    });
+});
 
 const port = 4200;
 // designates what port the app will listen to for incoming requests
 app.listen(port, function () {
-    console.log(`Example app listening on port ${port}!`);
-})
+    console.log(`App listening on port ${port}!`);
+});
 
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse);
-})
+});

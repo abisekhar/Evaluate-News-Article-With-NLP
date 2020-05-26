@@ -1,5 +1,14 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 40px;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    height: 100px;
+}
+
+.header-image {
+    flex: 1;
+}
+
+.header-title {
+    flex: 1.5;
 }
